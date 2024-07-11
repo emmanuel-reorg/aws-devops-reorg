@@ -46,9 +46,9 @@ jobs:
       - name: Terraform Plan
         run: |
           cd Terraform
-          terraform plan -var-file tfvars/${{ vars.ENVIRONMENT }}.tfvars -input=false -lock=false      
+          terraform plan       
       
       - name: Terraform Apply
         run: |
           cd Terraform
-          terraform apply -var-file tfvars/${{ vars.ENVIRONMENT }}.tfvars -input=false -auto-approve
+          terraform apply -input=false -auto-approve
