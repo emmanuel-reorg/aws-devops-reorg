@@ -24,3 +24,25 @@ variable "aws_region" {
   default     = "us-east-1"
 
 }
+
+variable "domain_name" {
+  description = "AWS region"
+  type        = string
+  default     = "alvarez-ops.com"
+
+}
+
+variable "environment" {
+  description = "Environment"
+  type        = string
+  default     = "dev"
+  
+}
+
+variable "api_name" {
+  description = "API name"
+  type        = string
+  default     = "fastapi"
+  
+}
+
