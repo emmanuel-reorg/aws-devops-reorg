@@ -30,20 +30,23 @@ jobs:
    
       - name: Configure Terraform Variables
         run: |
-          sed -i "s/<DYNAMODB_TABLE>/${{ secrets.DYNAMODB_TABLE }}/g" ./tfvars/configuration.tfvars
-          sed -i "s/<S3_BUCKET>/${{ secrets.S3_BUCKET }}/g" ./tfvars/configuration.tfvars
-          sed -i "s/<TF_KEY>/${{ secrets.KEY }}/g" ./tfvars/configuration.tfvars
-          sed -i "s/<REGION>/${{ vars.REGION }}/g" ./tfvars/configuration.tfvars
+          sed -i "s/<DYNAMODB_TABLE>/${{ secrets.DYNAMODB_TABLE }}/g" Terraform/tfvars/configuration.tfvars
+          sed -i "s/<S3_BUCKET>/${{ secrets.S3_BUCKET }}/g" Terraform/tfvars/configuration.tfvars
+          sed -i "s/<TF_KEY>/${{ secrets.KEY }}/g" Terraform/tfvars/configuration.tfvars
+          sed -i "s/<REGION>/${{ vars.REGION }}/g" Terraform/tfvars/configuration.tfvars
           
       - name: Terraform Validation
         run: |
+          cd Terraform
           terraform init -backend-config="tfvars/configuration.tfvars" -reconfigure
           terraform validate
 
       - name: Terraform Plan
         run: |
+          cd Terraform
           terraform plan -var-file tfvars/${{ vars.ENVIRONMENT }}.tfvars -input=false -lock=false      
       
       - name: Terraform Apply
         run: |
+          cd Terraform
           terraform apply -var-file tfvars/${{ vars.ENVIRONMENT }}.tfvars -input=false -auto-approve
