@@ -1,0 +1,43 @@
+name: AWS Terraform Validation
+
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "feature/*" ]
+
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+
+jobs:
+  aws-terraform-validation:
+    runs-on: ubuntu-latest
+
+    steps:            
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+   
+      - name: Configure Terraform Variables
+        run: |
+          sed -i "s/<DYNAMODB_TABLE>/${{ secrets.DYNAMODB_TABLE }}/g" ./tfvars/configuration.tfvars
+          sed -i "s/<S3_BUCKET>/${{ secrets.S3_BUCKET }}/g" ./tfvars/configuration.tfvars
+          sed -i "s/<TF_KEY>/${{ secrets.KEY }}/g" ./tfvars/configuration.tfvars
+          sed -i "s/<REGION>/${{ vars.REGION }}/g" ./tfvars/configuration.tfvars
+          sed -i "s/<DEVDBPASS>/${{ secrets.DEVDBPASS }}/g" ./tfvars/dev.tfvars
+          
+      - name: Terraform Validation
+        run: |
+          terraform init -backend-config="tfvars/configuration.tfvars" -reconfigure
+          terraform validate
+
+      - name: Terraform Plan
+        run: |
+          terraform plan -var-file tfvars/${{ vars.ENVIRONMENT }}.tfvars -input=false -lock=false      
