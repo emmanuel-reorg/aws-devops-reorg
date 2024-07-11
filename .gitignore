@@ -2,6 +2,7 @@
 **/.terraform/*
 **/.terraform
 *.terraform.lock.hcl
+**/.terraform.lock.hcl
 
 # .tfstate files
 *.tfstate
