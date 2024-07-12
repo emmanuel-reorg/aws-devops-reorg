@@ -2,7 +2,8 @@
 
 Architecture Diagram
 
-![Reorg AWS Solution Architecture drawio](https://github.com/emmanuel-reorg/aws-devops-reorg/assets/175167446/62c6c1d2-d8c4-44fa-a109-738b86cfa56d)
+![Reorg AWS Solution ArchitectureV2 drawio](https://github.com/user-attachments/assets/0c4b1d75-5a4e-483d-99d6-45f6304a1f92)
+
 
 
 # Terraform Setup and Usage Guide
@@ -72,4 +73,5 @@ Terraform Apply: Applies the Terraform plan, but only if the main branch is bein
 
 **Branching Model**
 A branching model helps organize workflow and collaboration in a Git repository. Here, we'll describe a GitHub branching model using main, develop, and feature branches. This model is commonly known as GitFlow.
-![image](https://github.com/user-attachments/assets/0b5a6041-6c6d-4b16-b5c7-b3768194cbe5)
+![gitflow-github](https://github.com/user-attachments/assets/76282154-ca94-4335-af55-692d48b80d6c)
+
