@@ -27,7 +27,6 @@ Before you begin, ensure you have the following installed:
 
 Clone this repository to your local machine using Git:
 
-```bash
 git clone https://github.com/emmanuel-reorg/aws-devops-reorg.git
 
 2. Initialize Terraform
@@ -64,14 +63,14 @@ Version Control: Commit your Terraform configuration files to version control, b
 
 **Jobs and Steps:**
 
-Checkout Code: Retrieves the repository's code.
-Setup Terraform: Installs the specified version of Terraform.
-Configure AWS Credentials: Configures AWS credentials using secrets stored in GitHub.
-Terraform Init: Initializes the Terraform working directory.
-Terraform Format: Ensures the Terraform files are properly formatted.
-Terraform Validate: Validates the Terraform configuration.
-Terraform Plan: Creates a plan for the changes to be applied.
-Terraform Plan Status: Checks if the plan includes changes.
-Terraform Apply: Applies the Terraform plan, but only if the main branch is being updated and changes are detected.
+- Checkout Code: Retrieves the repository's code.
+- Setup Terraform: Installs the specified version of Terraform.
+- Configure AWS Credentials: Configures AWS credentials using secrets stored in GitHub.
+- Terraform Init: Initializes the Terraform working directory.
+- Terraform Format: Ensures the Terraform files are properly formatted.
+- Terraform Validate: Validates the Terraform configuration.
+- Terraform Plan: Creates a plan for the changes to be applied.
+- Terraform Plan Status: Checks if the plan includes changes.
+- Terraform Apply: Applies the Terraform plan, but only if the main branch is being updated and changes are detected.
 
 
