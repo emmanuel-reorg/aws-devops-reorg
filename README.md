@@ -57,7 +57,7 @@ State Management: Store your Terraform state remotely (e.g., in an S3 bucket) to
 Version Control: Commit your Terraform configuration files to version control, but never commit sensitive information such as AWS credentials or Terraform state files.
 
 
-**Terraform Pipeline Execution using Actions**
+# **Terraform Pipeline Execution using Actions**
 
 **Triggers:** The workflow runs on pushes to the main branch, pull requests targeting main, and manual triggers via workflow_dispatch.
 
