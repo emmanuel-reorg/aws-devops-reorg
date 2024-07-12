@@ -1,11 +1,9 @@
 name: AWS Terraform CD
 
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
   pull_request:
-    types: [closed]
+    types:
+      - closed
     branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -18,10 +16,10 @@ env:
 
 jobs:
   aws-terraform-deployment:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     environment:
       name: develop
     runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.merged == true }}
 
     steps:          
       - name: Checkout repository
