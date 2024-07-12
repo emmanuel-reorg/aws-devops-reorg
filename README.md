@@ -54,7 +54,9 @@ Review the proposed changes and type yes to confirm and proceed.
 
 # **Terraform Pipeline Execution using Actions**
 
-**Triggers:** The workflow runs on pushes to the main branch, pull requests targeting main, and manual triggers via workflow_dispatch.
+**Triggers:** The workflow runs only on pull requests targeting main, and manual triggers via workflow_dispatch.
+
+Github Actions: https://github.com/emmanuel-reorg/aws-devops-reorg/actions
 
 **Jobs and Steps:**
 
@@ -67,5 +69,3 @@ Review the proposed changes and type yes to confirm and proceed.
 - Terraform Plan: Creates a plan for the changes to be applied.
 - Terraform Plan Status: Checks if the plan includes changes.
 - Terraform Apply: Applies the Terraform plan, but only if the main branch is being updated and changes are detected.
-
-
