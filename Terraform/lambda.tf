@@ -1,10 +1,10 @@
 resource "aws_lambda_function" "scheduled_lambda" {
-  function_name    = "scheduled_lambda"
-  handler          = "handler.lambda_handler"
-  runtime          = "python3.12"
-  role             = aws_iam_role.lambda_exec_role.arn
-  filename         = "../aws-lambda/package.zip"
-  source_code_hash = filebase64sha256("../aws-lambda/package.zip")
+  function_name = "scheduled_lambda"
+  handler       = "handler.lambda_handler"
+  runtime       = "provided.al2"
+  role          = aws_iam_role.lambda_exec_role.arn
+  image_uri     = "891377034703.dkr.ecr.us-east-1.amazonaws.com/lambda-schedule:latest"
+  package_type  = "Image"
 
   vpc_config {
     subnet_ids         = [aws_subnet.subnet-1a.id]
@@ -16,23 +16,31 @@ resource "aws_lambda_function" "scheduled_lambda" {
     }
   }
   depends_on = [aws_vpc.reorg]
+  lifecycle {
+    ignore_changes = [
+      image_uri,
+      handler,
+      runtime,
+    ]
+  
+  }
 }
 
 resource "aws_iam_role" "lambda_exec_role" {
   name = "lambda_exec_role"
 
   assume_role_policy = jsonencode({
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-     "Effect": "Allow",
-     "Principal": {
-     "Service": "lambda.amazonaws.com"
-    },
-  "Action": "sts:AssumeRole"
-  }
- ]
-})
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Principal" : {
+          "Service" : "lambda.amazonaws.com"
+        },
+        "Action" : "sts:AssumeRole"
+      }
+    ]
+  })
 }
 
 resource "aws_iam_policy" "lambda_vpc_access_policy" {
@@ -83,6 +91,7 @@ resource "aws_lambda_permission" "allow_eventbridge_to_call_scheduled_lambda" {
   function_name = aws_lambda_function.scheduled_lambda.function_name
   principal     = "events.amazonaws.com"
   source_arn    = aws_cloudwatch_event_rule.every_hour_trigger.arn
+  depends_on = [ aws_lambda_function.scheduled_lambda ]
 }
 
 resource "aws_iam_role" "lambda_invoke_role" {

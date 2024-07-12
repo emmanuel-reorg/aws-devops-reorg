@@ -36,13 +36,13 @@ variable "environment" {
   description = "Environment"
   type        = string
   default     = "dev"
-  
+
 }
 
 variable "api_name" {
   description = "API name"
   type        = string
   default     = "fastapi"
-  
+
 }
 

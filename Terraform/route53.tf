@@ -1,5 +1,5 @@
 resource "aws_route53_record" "alb_record" {
-  zone_id = data.aws_route53_zone.selected.zone_id 
+  zone_id = data.aws_route53_zone.selected.zone_id
   name    = "${var.environment}.${var.api_name}.${var.domain_name}"
   type    = "A"
 

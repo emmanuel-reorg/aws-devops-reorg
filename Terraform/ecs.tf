@@ -9,10 +9,10 @@ resource "aws_ecs_task_definition" "task" {
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
-  container_definitions    = jsonencode([
+  container_definitions = jsonencode([
     {
-      name      = "fastapi-container"
-      image     = "891377034703.dkr.ecr.us-east-1.amazonaws.com/fastapi-repo:latest"
+      name  = "fastapi-container"
+      image = "891377034703.dkr.ecr.us-east-1.amazonaws.com/fastapi-repo:latest"
       portMappings = [
         {
           containerPort = 8000
@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "task" {
     },
   ])
   lifecycle {
-    ignore_changes = [ container_definitions ]
+    ignore_changes = [container_definitions]
   }
 }
 
@@ -39,12 +39,12 @@ resource "aws_ecs_service" "service" {
   cluster         = aws_ecs_cluster.ecs-reorg.id
   task_definition = aws_ecs_task_definition.task.arn
   launch_type     = "FARGATE"
-  desired_count = 1
+  desired_count   = 1
 
   network_configuration {
-    subnets         = [aws_subnet.subnet-1a.id, aws_subnet.subnet-1b.id]
+    subnets          = [aws_subnet.subnet-1a.id, aws_subnet.subnet-1b.id]
     assign_public_ip = true
-    security_groups = [aws_security_group.ecs_sg.id]
+    security_groups  = [aws_security_group.ecs_sg.id]
   }
 
   load_balancer {
