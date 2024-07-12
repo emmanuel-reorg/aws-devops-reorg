@@ -5,7 +5,7 @@ Architecture Diagram
 ![Reorg AWS Solution ArchitectureV2 drawio](https://github.com/user-attachments/assets/0c4b1d75-5a4e-483d-99d6-45f6304a1f92)
 
 **Branching Model**
-A branching model helps organize workflow and collaboration in a Git repository. Here, we'll describe a GitHub branching model using main, develop, and feature branches. This model is commonly known as GitFlow.
+This branching model helps organize workflow and collaboration in a Git repository. Here, we'll describe a GitHub branching model using main, develop, and feature branches. This model is commonly known as GitFlow.
 
 ![gitflow-github](https://github.com/user-attachments/assets/40bc12f7-94a8-4730-a66f-d239ee4a5c78)
 
@@ -50,11 +50,6 @@ If you need to tear down your infrastructure, use the destroy command:
 run in your terminal : **terraform destroy**
 
 Review the proposed changes and type yes to confirm and proceed.
-
-**Best Practices**
-Use Variables: Define variables in variables.tf to make your configuration flexible and reusable. Provide default values where appropriate and use terraform.tfvars or environment variables to set sensitive or environment-specific values.
-State Management: Store your Terraform state remotely (e.g., in an S3 bucket) to enable collaboration and ensure state consistency.
-Version Control: Commit your Terraform configuration files to version control, but never commit sensitive information such as AWS credentials or Terraform state files.
 
 
 # **Terraform Pipeline Execution using Actions**
