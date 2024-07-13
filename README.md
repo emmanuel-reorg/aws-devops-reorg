@@ -5,7 +5,7 @@ Architecture Diagram
 ![Reorg AWS Solution ArchitectureV2 drawio](https://github.com/user-attachments/assets/0c4b1d75-5a4e-483d-99d6-45f6304a1f92)
 
 **Branching Model**
-This branching model helps organize workflow and collaboration in a Git repository. Here, we'll describe a GitHub branching model using main, develop, and feature branches. This model is commonly known as GitFlow.
+helps organize workflow and collaboration in a Git repository. Here, we'll describe a GitHub branching model using main, develop, and feature branches. This model is commonly known as GitFlow.
 
 ![gitflow-github](https://github.com/user-attachments/assets/40bc12f7-94a8-4730-a66f-d239ee4a5c78)
 
